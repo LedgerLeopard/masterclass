@@ -109,7 +109,7 @@ class Driver extends Component {
             </Card>
           </Col>
         </Row>
-        <Coinbase coinbase={this.state.coinbase} />
+        <Coinbase coinbase={this.state.coinbase} role="Driver" />
       </Container >
     );
   }

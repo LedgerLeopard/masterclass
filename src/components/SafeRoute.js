@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Table, Alert } from 'reactstrap';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Container, Row, Col, Table, Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { GeoHash } from 'geohash';
 import contract from 'truffle-contract';
 import SafeRouteContract from './../../build/contracts/SafeRoute.json';
@@ -65,14 +64,20 @@ class SafeRoute extends Component {
                 <Label for="driver">Driver</Label>
                 <Input id="driver" onChange={event => this.setState({ driver: event.target.value })} />
               </FormGroup>
-              <FormGroup>
-                <Label for="dossierHash">Dossier Hash</Label>
-                <Input id="dossierHash" onChange={event => this.setState({ dossierHash: event.target.value })} />
-              </FormGroup>
-              <FormGroup>
-                <Label for="dossierPointer">Dossier Pointer</Label>
-                <Input id="dossierPointer" onChange={event => this.setState({ dossierPointer: event.target.value })} />
-              </FormGroup>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label for="dossierHash">Dossier Hash</Label>
+                    <Input id="dossierHash" onChange={event => this.setState({ dossierHash: event.target.value })} />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <Label for="dossierPointer">Dossier Pointer</Label>
+                    <Input id="dossierPointer" onChange={event => this.setState({ dossierPointer: event.target.value })} />
+                  </FormGroup>
+                </Col>
+              </Row>
               <MapComponent
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
@@ -98,7 +103,7 @@ class SafeRoute extends Component {
                     {
                       this.state.markers.map((item, index) => (
                         <tr key={index}>
-                        <td>{GeoHash.encodeGeoHash(item.lat, item.lng)}</td>
+                          <td>{GeoHash.encodeGeoHash(item.lat, item.lng)}</td>
                           <td>{this.props.roadManagers[index].address}</td>
                         </tr>
                       ))
